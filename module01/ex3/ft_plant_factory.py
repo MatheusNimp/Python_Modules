@@ -1,20 +1,39 @@
 class Plant:
-    def __init__(self, name:	str, height:	int, age:	int):
+    """
+    Represents a plant with basic attributes and growth behavior.
+    """
+    def __init__(self, name: str, height: int, age: int):
+        """
+        Initializes a Plant object with name, height, and age.
+        """
         self.name = name
         self.height = height
         self.age = age
 
     def get_info(self):
+        """
+        Prints the current information of the plant.
+        """
         print(f"{self.name}: {self.height}cm, {self.age} days old")
 
     def grow(self):
+        """
+        Increases the plant's height by one unit.
+        """
         self.height += 1
 
     def aging(self):
+        """
+        Increases the plant's age by one day.
+        """
         self.age += 1
 
 
 def ft_plant_factory():
+    """
+    Creates multiple Plant objects from predefined data
+    and displays their creation details.
+    """
     n_plants = 0
     plants_data = [
         ("Rose", 25, 30),
@@ -33,8 +52,14 @@ def ft_plant_factory():
 
 
 def main():
+    """
+    Main function that runs the plant factory process.
+    """
     ft_plant_factory()
 
 
 if __name__ == "__main__":
+    """
+    Entry point of the program.
+    """
     main()
