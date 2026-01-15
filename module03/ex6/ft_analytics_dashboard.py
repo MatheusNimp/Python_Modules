@@ -3,21 +3,33 @@ def main():
 
     players = [
         {"name": "alice", "score": 2300, "active": True,  "region": "north",
-         "achievements": ["first_kill", "level_10", "boss_slayer",
-                          "treasure_hunter", "speed_demon"]
+         "achievements":
+         [
+             "first_kill", "level_10", "boss_slayer",
+             "treasure_hunter", "speed_demon"
+         ]
          },
         {"name": "bob", "score": 1800, "active": True,  "region": "east",
-         "achievements": ["first_kill", "level_10", "collector"]
+         "achievements":
+         [
+             "first_kill", "level_10", "collector"
+         ]
          },
         {"name": "charlie", "score": 2150,
          "active": True,  "region": "central",
-         "achievements": ["level_10", "boss_slayer", "treasure_hunter",
-                          "speed_demon", "perfectionist",
-                          "marathon", "no_damage"]
+         "achievements":
+         [
+             "level_10", "boss_slayer", "treasure_hunter",
+             "speed_demon", "perfectionist",
+             "marathon", "no_damage"
+         ]
          },
         {"name": "diana", "score": 2050, "active": False, "region": "north",
-         "achievements": ["first_kill", "level_10",
-                          "story_complete", "boss_slayer"]
+         "achievements":
+         [
+             "first_kill", "level_10",
+             "story_complete", "boss_slayer"
+         ]
          },
     ]
 
@@ -38,7 +50,7 @@ def main():
     print(f"Player scores: {player_scores}")
 
     score_bucket = [
-        ("high" if p["score"] >= 2100 else (
+        ("high" if p["score"] >= 2000 else (
             "medium" if p["score"] >= 1800 else "low"))
         for p in players
     ]
@@ -55,7 +67,7 @@ def main():
 
     print("\n=== Set Comprehension Examples ===")
 
-    unique_players = {p["name"] for p in players}
+    unique_players = sorted({p["name"] for p in players})
     print(f"Unique players: {unique_players}")
 
     all_achievements = {a for p in players for a in p["achievements"]}
