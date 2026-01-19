@@ -31,3 +31,38 @@ class NumericProcessor(DataProcessor):
             return False
 
         return True
+
+    def process(self, data):
+        if not self.validate(data):
+            return "Error in validation"
+
+        counter = 0
+        total = 0
+
+        for x in data:
+            counter += 1
+            sum += x
+
+        print(f"Processed {counter} numeric values, sum={sum}, avg={}")
+
+
+class TextProcessor(DataProcessor):
+
+    def validate(self, data):
+        if not data:
+            return False
+        if not isinstance(data, (str)):
+            return False
+
+        return True
+
+
+class LogProcessor(DataProcessor):
+
+    def validate(self, data):
+        if not data:
+            return False
+        if not isinstance(data, (str)):
+            return False
+
+        return True
