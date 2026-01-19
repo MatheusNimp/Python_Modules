@@ -1,4 +1,7 @@
 def check_temperature(temp_str:  str):
+    """
+    Check if the temperature is within the limits.
+    """
     try:
         temperature = int(temp_str)
     except ValueError:
@@ -13,6 +16,10 @@ def check_temperature(temp_str:  str):
 
 
 def test_temperature_input():
+    """
+    Tests some examples to confirm if check_temperature
+    is working appropriately
+    """
     print("=== Garden Temperature Checker ===\n")
     check_temperature("25")
     check_temperature("abc")
@@ -22,6 +29,10 @@ def test_temperature_input():
 
 
 def main():
+    """
+    Entry point of the program
+    Runs test_temperature_input()
+    """
     test_temperature_input()
 
 

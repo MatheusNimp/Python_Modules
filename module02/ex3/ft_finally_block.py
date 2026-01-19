@@ -1,4 +1,7 @@
 def water_plants(plant_list):
+    """
+    Simulates a watering system, with error handling and cleanup
+    """
     print("Opening watering system")
     try:
         for plant in plant_list:
@@ -12,6 +15,9 @@ def water_plants(plant_list):
 
 
 def test_watering_system() -> None:
+    """
+    Runs testes to demonstrate the errors and the use of finally block
+    """
     print("=== Garden Watering System ===\n")
     print("testing normal watering...")
     plants = [
@@ -30,6 +36,10 @@ def test_watering_system() -> None:
 
 
 def main() -> None:
+    """
+    Entry point of the program
+    Runs test_watering_system()
+    """
     test_watering_system()
 
 

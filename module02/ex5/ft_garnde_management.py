@@ -1,31 +1,55 @@
 class GardenError(Exception):
+    """
+    A father Class to all garden exceptions
+    """
     pass
 
 
 class PlantError(GardenError):
+    """
+    Class to handle specific exceptions related to plants
+    """
     pass
 
 
 class TankError(GardenError):
+    """
+    Class to handle specific exceptions related to the water tank
+    """
     pass
 
 
 class WaterError(GardenError):
+    """
+    Class to handle specific exceptions related to water
+    """
     pass
 
 
 class HealthCheckError(GardenError):
+    """
+    Class to handle specific exceptions related to plants health
+    """
     pass
 
 
 class GardenManager:
+    """
+    Class to manage the plants and the water tank
+    """
     MAX_TANK = 10
 
     def __init__(self):
+        """
+        Initialize the garden with a empety plants list and a standard tank
+        """
         self.plants = {}
         self.water_tank = 5
 
     def add_plant(self, name, water, sun):
+        """
+        Add a plant to to the garden
+        """
         if not name:
             raise PlantError("Plant name cannot be empty!")
 
@@ -39,6 +63,9 @@ class GardenManager:
         print(f"Added {name} successfully")
 
     def fill_tank(self, amount):
+        """
+        If possible, fill the water tank
+        """
         if amount <= 0:
             raise TankError("Fill amount must be positive")
 
@@ -49,6 +76,9 @@ class GardenManager:
         print(f"Tank filled. Current water level: {self.water_tank}")
 
     def water_plants(self):
+        """
+        Water the plants
+        """
         if self.water_tank <= 0:
             raise WaterError("Not enough water in tank")
 
@@ -65,6 +95,9 @@ class GardenManager:
             print("Closing watering system (cleanup)")
 
     def check_plant_health(self, name):
+        """
+        verify the plants health
+        """
         if name not in self.plants:
             raise HealthCheckError(f"Plant {name} not found")
 
@@ -86,6 +119,10 @@ class GardenManager:
 
 
 def main():
+    """
+    Entry point of the program
+    Runs the previous methods to simulate the garden management system
+    """
     print("=== Garden Management System ===\n")
 
     manager = GardenManager()

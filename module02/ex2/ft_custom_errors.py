@@ -1,24 +1,44 @@
 class GardenError(Exception):
+    """
+    A father Class to all garden exceptions
+    """
     pass
 
 
 class PlantError(GardenError):
+    """
+    Class to handle specific exceptions related to plants
+    """
     pass
 
 
 class WaterError(GardenError):
+    """
+    Class to handle specific exceptions related to water
+    """
     pass
 
 
 def raise_plant_error() -> None:
+    """
+    method to raise errors related to plants (PlantError)
+    """
     raise PlantError("The tomato plant is wilting!")
 
 
 def raise_water_error() -> None:
+    """
+    method to raise errors related to water (WaterError)
+    """
     raise WaterError("Not enough water in the tank!")
 
 
-def main():
+def main() -> None:
+    """
+    Entry point of the program
+    Runs some of the methods to check
+    if the custom errors are being correctly displayed
+    """
     print("=== Custom Garden Errors Demo ===\n")
     print("Testing PlantError:")
     try:

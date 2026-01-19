@@ -1,4 +1,7 @@
 def garden_operations():
+    """
+    A method to handle different error types
+    """
     print("Testing ValueError...\n")
     try:
         int("abc")
@@ -32,12 +35,19 @@ def garden_operations():
 
 
 def test_error_types():
+    """
+    A method to test the output of garden_operations()
+    """
     print("=== Garden Error Types Demo ===\n")
     garden_operations()
     print("All error types tested successfully!")
 
 
 def main():
+    """
+    Entry point of the program
+    Runs test_error_types()
+    """
     test_error_types()
 
 
