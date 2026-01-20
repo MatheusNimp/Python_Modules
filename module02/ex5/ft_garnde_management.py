@@ -39,14 +39,14 @@ class GardenManager:
     """
     MAX_TANK = 10
 
-    def __init__(self):
+    def __init__(self) -> None:
         """
         Initialize the garden with a empety plants list and a standard tank
         """
         self.plants = {}
         self.water_tank = 5
 
-    def add_plant(self, name, water, sun):
+    def add_plant(self, name: str, water: int, sun: int) -> None:
         """
         Add a plant to to the garden
         """
@@ -62,7 +62,7 @@ class GardenManager:
         }
         print(f"Added {name} successfully")
 
-    def fill_tank(self, amount):
+    def fill_tank(self, amount: int) -> None:
         """
         If possible, fill the water tank
         """
@@ -75,7 +75,7 @@ class GardenManager:
         self.water_tank += amount
         print(f"Tank filled. Current water level: {self.water_tank}")
 
-    def water_plants(self):
+    def water_plants(self) -> None:
         """
         Water the plants
         """
@@ -94,7 +94,7 @@ class GardenManager:
         finally:
             print("Closing watering system (cleanup)")
 
-    def check_plant_health(self, name):
+    def check_plant_health(self, name: str) -> None:
         """
         verify the plants health
         """
@@ -118,7 +118,7 @@ class GardenManager:
         print(f"{name}: healthy (water: {water}, sun: {sun})")
 
 
-def main():
+def main() -> None:
     """
     Entry point of the program
     Runs the previous methods to simulate the garden management system

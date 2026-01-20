@@ -1,8 +1,11 @@
+from typing import Optional
+
+
 def check_plant_health(
-        plant_name: str, water_level: int, sunlight_hours: int
+        plant_name: Optional[str], water_level: int, sunlight_hours: int
         ) -> str:
     """
-    Validate plants health conditions and return it`s health status
+    Validate plant health conditions and return its health status.
     """
     if not plant_name:
         raise ValueError("Plant name cannont be empty!\n")

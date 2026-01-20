@@ -1,4 +1,4 @@
-def check_temperature(temp_str:  str):
+def check_temperature(temp_str: str) -> None:
     """
     Check if the temperature is within the limits.
     """
@@ -15,7 +15,7 @@ def check_temperature(temp_str:  str):
         print(f"Temperature {temperature}˚C is perfect for plants!\n")
 
 
-def test_temperature_input():
+def test_temperature_input() -> None:
     """
     Tests some examples to confirm if check_temperature
     is working appropriately
@@ -28,7 +28,7 @@ def test_temperature_input():
     print("All tests completed - program didn't crash!")
 
 
-def main():
+def main() -> None:
     """
     Entry point of the program
     Runs test_temperature_input()

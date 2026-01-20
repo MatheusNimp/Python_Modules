@@ -1,6 +1,9 @@
-def water_plants(plant_list):
+from typing import List, Optional
+
+
+def water_plants(plant_list: List[Optional[str]]) -> None:
     """
-    Simulates a watering system, with error handling and cleanup
+    Simulates a watering system, with error handling and cleanup.
     """
     print("Opening watering system")
     try:
@@ -16,7 +19,8 @@ def water_plants(plant_list):
 
 def test_watering_system() -> None:
     """
-    Runs testes to demonstrate the errors and the use of finally block
+    Runs tests to demonstrate error handling
+    and the use of the finally block.
     """
     print("=== Garden Watering System ===\n")
     print("testing normal watering...")
@@ -37,8 +41,8 @@ def test_watering_system() -> None:
 
 def main() -> None:
     """
-    Entry point of the program
-    Runs test_watering_system()
+    Entry point of the program.
+    Runs test_watering_system().
     """
     test_watering_system()
 
