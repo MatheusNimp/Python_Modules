@@ -1,7 +1,11 @@
 import sys
 
 
-def main():
+def main() -> None:
+    """
+    Entry point of the program.
+    Displays the program name and any command-line arguments received.
+    """
     print("=== Command Quest ===")
     args = sys.argv
     argc = len(args)

@@ -1,8 +1,13 @@
 import sys
 import math
+from typing import Tuple
 
 
-def parser(coordinates: str):
+def parser(coordinates: str) -> Tuple[int, int, int]:
+    """
+    Parse a string containing three comma-separated integers
+    into a tuple of (x, y, z) coordinates.
+    """
     parts = coordinates.split(",")
     if len(parts) != 3:
         raise ValueError("Expected exactly 3 coordinates")
@@ -13,14 +18,25 @@ def parser(coordinates: str):
     return (x, y, z)
 
 
-def calculate_distance(pos1, pos2):
+def calculate_distance(
+    pos1: Tuple[int, int, int],
+    pos2: Tuple[int, int, int]
+) -> float:
+    """
+    Calculate the Euclidean distance between two 3D coordinates.
+    """
     x1, y1, z1 = pos1
     x2, y2, z2 = pos2
-    result = math.sqrt((x2-x1)**2 + (y2-y1)**2 + (z2-z1)**2)
+    result = math.sqrt((x2 - x1)**2 + (y2 - y1)**2 + (z2 - z1)**2)
     return (result)
 
 
-def main():
+def main() -> None:
+    """
+    Entry point of the program.
+    Demonstrates coordinate parsing, distance calculation,
+    and tuple unpacking.
+    """
     print("=== Game Coordinate System ===\n")
 
     spawn = (0, 0, 0)

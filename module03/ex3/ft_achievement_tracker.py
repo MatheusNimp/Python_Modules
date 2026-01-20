@@ -1,20 +1,26 @@
-def players_achievements():
+from typing import Set
 
-    alice = {
+
+def players_achievements() -> None:
+    """
+    Defines players achievements and runs tracking and analytics reports.
+    """
+
+    alice: Set[str] = {
         'first_kill',
         'level_10',
         'treasure_hunter',
         'speed_demon'
         }
 
-    bob = {
+    bob: Set[str] = {
         'first_kill',
         'level_10',
         'boss_slayer',
         'collector'
         }
 
-    charlie = {
+    charlie: Set[str] = {
         'level_10',
         'treasure_hunter',
         'boss_slayer',
@@ -22,14 +28,20 @@ def players_achievements():
         'perfectionist'
         }
 
-    def achievements_tracker():
+    def achievements_tracker() -> None:
+        """
+        Displays each player's achievements.
+        """
         print("=== Achievement Tracker System ===")
 
         print(f"\nPlayer alice achievements: {alice}")
         print(f"Player bob achievements: {bob}")
         print(f"Player charlie achievements: {charlie}")
 
-    def achievements_analytics():
+    def achievements_analytics() -> None:
+        """
+        Performs analytics on players achievements using set operations.
+        """
         print("\n=== Achievement Analytics ===")
 
         all_achievements = alice.union(bob).union(charlie)
@@ -39,9 +51,13 @@ def players_achievements():
         common_to_all = alice.intersection(bob).intersection(charlie)
         print(f"\nCommon to all players: {common_to_all}")
 
-        rare_achievement = all_achievements.difference(alice.intersection(
-            bob).union(alice.intersection(
-                charlie).union(bob.intersection(charlie))))
+        rare_achievement = all_achievements.difference(
+            alice.intersection(bob).union(
+                alice.intersection(charlie).union(
+                    bob.intersection(charlie)
+                )
+            )
+        )
         print(f"Rare achievements (1 player): {rare_achievement}")
 
         a_vs_b = alice.intersection(bob)
@@ -55,7 +71,11 @@ def players_achievements():
     achievements_analytics()
 
 
-def main():
+def main() -> None:
+    """
+    Entry point of the program.
+    Runs players_achievements().
+    """
     players_achievements()
 
 

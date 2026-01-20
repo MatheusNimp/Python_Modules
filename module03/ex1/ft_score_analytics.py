@@ -1,7 +1,12 @@
 import sys
 
 
-def main():
+def main() -> None:
+    """
+    Entry point of the program.
+    Processes command-line arguments as player scores and
+    prints basic statistical analysis.
+    """
     print("=== Player Score Analytics ===")
     args = sys.argv[1:]
     if len(args) == 0:
@@ -10,6 +15,7 @@ def main():
             "<score_1> <score_2> ..."
               )
         return
+
     scores = []
     for arg in args:
         try:

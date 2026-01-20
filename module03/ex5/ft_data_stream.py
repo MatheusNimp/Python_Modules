@@ -1,4 +1,7 @@
-def prng(seed):
+from typing import Generator, Iterator, Tuple
+
+
+def prng(seed: int) -> Iterator[int]:
     """Return an infinite stream of pseudo-random
      integers using a simple LCG."""
     a = 1103515245
@@ -9,7 +12,10 @@ def prng(seed):
         yield seed
 
 
-def game_event_stream(n, seed):
+def game_event_stream(
+    n: int,
+    seed: int
+) -> Generator[Tuple[str, int, str, str], None, None]:
     """
     Generate n game events using a pseudo-random
      number generator (no random module).
@@ -48,7 +54,7 @@ def game_event_stream(n, seed):
         yield (player, level, event_type, message)
 
 
-def fibonacci():
+def fibonacci() -> Iterator[int]:
     """Infinite Fibonacci sequence generator."""
     a = 0
     b = 1
@@ -57,7 +63,7 @@ def fibonacci():
         a, b = b, a + b
 
 
-def is_prime(n):
+def is_prime(n: int) -> bool:
     """Check if a number is prime (simple method for small values)."""
     if n < 2:
         return False
@@ -67,7 +73,7 @@ def is_prime(n):
     return True
 
 
-def primes():
+def primes() -> Iterator[int]:
     """Infinite prime number generator."""
     x = 2
     while True:
@@ -76,7 +82,11 @@ def primes():
         x = x + 1
 
 
-def main():
+def main() -> None:
+    """
+    Entry point of the program.
+    Processes a stream of game events and demonstrates generators.
+    """
     print("=== Game Data Stream Processor ===")
 
     total_events = 1000

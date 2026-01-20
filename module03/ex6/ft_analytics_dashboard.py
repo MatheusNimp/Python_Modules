@@ -1,7 +1,15 @@
-def main():
+from typing import Any, Dict, List
+
+
+def main() -> None:
+    """
+    Entry point of the program.
+    Demonstrates list, dict, and set comprehensions for a simple
+    game analytics dashboard.
+    """
     print("=== Game Analytics Dashboard ===")
 
-    players = [
+    players: List[Dict[str, Any]] = [
         {"name": "alice", "score": 2300, "active": True,  "region": "north",
          "achievements":
          [
