@@ -1,11 +1,11 @@
 import sys
-from typing import Dict, Tuple
+from typing import Dict, Tuple, List
 
-# Teste command
-# (python3 ft_inventory_system.py sword:1 potion:5 shield:2 armor:3 helmet:1)
+# Test command:
+# python3 ft_inventory_system.py sword:1 potion:5 shield:2 armor:3 helmet:1
 
 
-def parse_args(argv: list[str]) -> Dict[str, int]:
+def parse_args(argv: List[str]) -> Dict[str, int]:
     """
     Parse command-line arguments in the format item:quantity.
 
@@ -20,7 +20,7 @@ def parse_args(argv: list[str]) -> Dict[str, int]:
     i: int = 1
     while i < len(argv):
         arg: str = argv[i]
-        parts: list[str] = arg.split(":")
+        parts: List[str] = arg.split(":")
 
         if len(parts) != 2:
             i += 1
@@ -71,8 +71,7 @@ def total_items(inventory: Dict[str, int]) -> int:
 
 
 def find_most_and_least(
-    inventory: Dict[str, int]
-) -> Tuple[str, int, str, int]:
+        inventory: Dict[str, int]) -> Tuple[str, int, str, int]:
     """
     Find the most and least abundant items.
 
@@ -125,9 +124,7 @@ def format_percent(part: int, whole: int) -> str:
 
 
 def print_inventory_sorted_by_qty_desc(
-    inventory: Dict[str, int],
-    total: int
-) -> None:
+        inventory: Dict[str, int], total: int) -> None:
     """
     Print inventory items sorted by quantity (descending).
 
@@ -159,8 +156,7 @@ def print_inventory_sorted_by_qty_desc(
 
 
 def abundance_categories(
-    inventory: Dict[str, int]
-) -> Dict[str, Dict[str, int]]:
+        inventory: Dict[str, int]) -> Dict[str, Dict[str, int]]:
     """
     Categorize items by abundance.
 
@@ -245,7 +241,15 @@ def format_values_as_list_string(inventory: Dict[str, int]) -> str:
 def main() -> None:
     """
     Entry point of the Inventory Master system.
+
+    If no command-line arguments are provided,
+    prints an error message and exits.
     """
+    if len(sys.argv) <= 1:
+        print("ERROR: No items provided. Usage: python3 "
+              "ft_inventory_system.py item:qty ...")
+        return
+
     inventory: Dict[str, int] = parse_args(sys.argv)
 
     print("=== Inventory System Analysis ===")
@@ -264,8 +268,8 @@ def main() -> None:
         print("Most abundant:  (0 units)")
         print("Least abundant:  (0 units)")
     else:
-        (most_name, most_qty,
-         least_name, least_qty) = find_most_and_least(inventory)
+        most_name, most_qty, least_name, least_qty = find_most_and_least(
+            inventory)
         print(f"Most abundant: {most_name} ({most_qty} units)")
         print(f"Least abundant: {least_name} ({least_qty} units)")
 
