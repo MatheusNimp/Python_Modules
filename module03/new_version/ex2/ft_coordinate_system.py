@@ -17,7 +17,7 @@ def get_player_pos() -> tuple[float, float, float]:
             y: float = float(parts[1].strip())
             z: float = float(parts[2].strip())
             return (x, y, z)
-        except ValueError as exc:
+        except ValueError as error:
             invalid_value: str = ""
             for part in parts:
                 try:
@@ -25,7 +25,7 @@ def get_player_pos() -> tuple[float, float, float]:
                 except ValueError:
                     invalid_value = part.strip()
                     break
-            print(f"Error on parameter '{invalid_value}': {exc}")
+            print(f"Error on parameter '{invalid_value}': {error}")
 
 
 def distance(point_a: tuple[float, float, float],
@@ -40,7 +40,7 @@ def distance(point_a: tuple[float, float, float],
 
 def main() -> None:
     """Run the coordinate tracking workflow."""
-    print("=== Game Coordinate System ===")
+    print("=== Game Coordinate System ===\n")
     print("Get a first set of coordinates")
     first_pos: tuple[float, float, float] = get_player_pos()
     print(f"Got a first tuple: {first_pos}")

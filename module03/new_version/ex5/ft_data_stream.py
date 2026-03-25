@@ -37,7 +37,7 @@ def main() -> None:
     event_generator: typing.Generator[
         tuple[str, str], None, None] = gen_event()
 
-    for index in range(1000):
+    for index in range(50):
         event: tuple[str, str] = next(event_generator)
         print(f"Event {index}: Player {event[0]} did action {event[1]}")
 

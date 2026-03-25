@@ -21,8 +21,8 @@ def main() -> None:
             continue
         try:
             quantity: int = int(quantity_str)
-        except ValueError as exc:
-            print(f"Quantity error for '{item_name}': {exc}")
+        except ValueError as error:
+            print(f"Quantity error for '{item_name}': {error}")
             continue
         inventory.update({item_name: quantity})
         order.append(item_name)
