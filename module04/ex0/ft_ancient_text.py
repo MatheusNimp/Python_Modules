@@ -1,27 +1,23 @@
-def main():
-    file_name = "ancient_fragment.txt"
+FILENAME = "ancient_fragment.txt"
 
-    print("=== CYBER ARCHIVES - DATA RECOVERY SYSTEM ===")
 
-    print(f"\nAcessing Storage Vault: {file_name}")
-    file_obj = None
+def main() -> None:
+    print("=== CYBER ARCHIVES - DATA RECOVERY SYSTEM ===\n")
+    print(f"Accessing Storage Vault: {FILENAME}")
     try:
-        file_obj = open(file_name, "r")
-        print("Connection established...")
-        data = file_obj.read()
-
-        print("RECOVERED DATA:\n")
-        print(data, end="")
-
-        if len(data) > 0 and data[-1] != "\n":
-            print()
-
-        print("\nData recovery complete. Storage unit disconnected.")
+        file = open(FILENAME, "r", encoding="utf-8")
+        print("Connection established...\n")
+        content = file.read().strip()
+        file.close()
     except FileNotFoundError:
         print("ERROR: Storage vault not found. Run data generator first.")
-    finally:
-        if file_obj is not None:
-            file_obj.close()
+        return
+
+    print("RECOVERED DATA:")
+    if content:
+        for line in content.splitlines():
+            print(line)
+    print("\nData recovery complete. Storage unit disconnected.")
 
 
 if __name__ == "__main__":

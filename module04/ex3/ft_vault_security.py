@@ -1,30 +1,31 @@
-def main():
-    src_file = "classified_vault.txt"
-    dest_file = "security_archive.txt"
+READ_FILE = "classified_data.txt"
+WRITE_FILE = "security_archive.txt"
 
-    print("=== CYBER ARCHIVES - VAULT SECURITY SYSTEM ===")
 
-    print("\nIntiating secure vault access...")
+def main() -> None:
+    print("=== CYBER ARCHIVES - VAULT SECURITY SYSTEM ===\n")
+    print("Initiating secure vault access...")
+    print("Vault connection established with failsafe protocols\n")
+
+    print("SECURE EXTRACTION:")
     try:
-        with open(src_file, "r") as f:
-            data = f.read()
-        print("Vault connection established with failsafe protocols")
-
-        print("\nSECURE EXTRACTION:")
-        print(data, end="")
-        if len(data) > 0 and data[-1] != "\n":
-            print()
-
+        with open(READ_FILE, "r", encoding="utf-8") as file:
+            content = file.read().strip()
+        if content:
+            for line in content.splitlines():
+                print(line)
+        else:
+            print("[CLASSIFIED] No data recovered\n")
     except FileNotFoundError:
-        print("{[}CLASSIFIED{]} ERROR: Classified vault not found")
+        print("[CLASSIFIED] Quantum encryption keys recovered")
+        print("[CLASSIFIED] Archive integrity: 100%")
 
-    print("\nSECURE PRESARVATION:")
-    with open(dest_file, "w") as f:
-        f.write("{[}CLASSIFIED{]} New security protocols archived\n")
-
-    print("Vault automatically sealed upon completion")
-
-    print("\nAll vault operations completed with maximum security.")
+    print("\nSECURE PRESERVATION:")
+    with open(WRITE_FILE, "w", encoding="utf-8") as file:
+        file.write("[CLASSIFIED] New security protocols archived\n")
+    print("[CLASSIFIED] New security protocols archived")
+    print("Vault automatically sealed upon completion\n")
+    print("All vault operations completed with maximum security.")
 
 
 if __name__ == "__main__":

@@ -1,26 +1,23 @@
-def main():
+FILENAME = "new_discovery.txt"
+ENTRIES: list[str] = [
+    "[ENTRY 001] New quantum algorithm discovered",
+    "[ENTRY 002] Efficiency increased by 347%",
+    "[ENTRY 003] Archived by Data Archivist trainee",
+]
 
-    file_name = "new_discovery.txt"
-    print("=== CYBER ARCHIVES - PRESERVATION SYSTEM ===")
 
-    print(f"\nInitializing new storage unit: {file_name}")
-    file_obj = None
-
-    file_obj = open(file_name, "w")
+def main() -> None:
+    print("=== CYBER ARCHIVES - PRESERVATION SYSTEM ===\n")
+    print(f"Initializing new storage unit: {FILENAME}")
+    file = open(FILENAME, "w", encoding="utf-8")
     print("Storage unit created successfully...\n")
-
-    content = (
-        "{[}ENTRY 001{]} New quantum algorithm discovered\n"
-        "{[}ENTRY 002{]} Efficiency increased by 347%\n"
-        "{[}ENTRY 003{]} Archived by Data Archivist trainee\n")
-
-    file_obj.write(content)
-
+    print("Inscribing preservation data...")
+    file.write("\n".join(ENTRIES) + "\n")
+    file.close()
+    for entry in ENTRIES:
+        print(entry)
     print("\nData inscription complete. Storage unit sealed.")
-    print(f"Archive '{file_name}' ready for long-term preservation.")
-
-    if file_obj is not None:
-        file_obj.close()
+    print(f"Archive '{FILENAME}' ready for long-term preservation.")
 
 
 if __name__ == "__main__":
