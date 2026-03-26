@@ -1,0 +1,43 @@
+from typing import Any
+
+from ex0.Card import Card
+
+
+class CreatureCard(Card):
+    def __init__(
+        self,
+        name: str,
+        cost: int,
+        rarity: str,
+        attack: int,
+        health: int,
+    ) -> None:
+        super().__init__(name, cost, rarity)
+        if attack <= 0 or health <= 0:
+            raise ValueError("attack and health must be positive integers")
+        self.attack = attack
+        self.health = health
+        self.card_type = "Creature"
+
+    def play(self, game_state: dict[str, Any]) -> dict[str, Any]:
+        battlefield = game_state.setdefault("battlefield", [])
+        battlefield.append(self.name)
+        return {
+            "card_played": self.name,
+            "mana_used": self.cost,
+            "effect": "Creature summoned to battlefield",
+        }
+
+    def attack_target(self, target: Any) -> dict[str, Any]:
+        target_name = getattr(target, "name", str(target))
+        return {
+            "attacker": self.name,
+            "target": target_name,
+            "damage_dealt": self.attack,
+            "combat_resolved": True,
+        }
+
+    def get_card_info(self) -> dict[str, Any]:
+        info = super().get_card_info()
+        info.update({"attack": self.attack, "health": self.health})
+        return info
