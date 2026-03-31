@@ -10,7 +10,7 @@ def access_archive(filename: str) -> None:
     if filename == "classified_vault.txt":
         raise PermissionError("Security protocols deny access")
 
-    with open(filename, "r", encoding="utf-8") as file:
+    with open(filename, "r") as file:
         content = file.read().strip()
 
     if "CORRUPTION" in content or "ERROR" in content:

@@ -5,7 +5,7 @@ def main() -> None:
     print("=== CYBER ARCHIVES - DATA RECOVERY SYSTEM ===\n")
     print(f"Accessing Storage Vault: {FILENAME}")
     try:
-        file = open(FILENAME, "r", encoding="utf-8")
+        file = open(FILENAME, "r")
         print("Connection established...\n")
         content = file.read().strip()
         file.close()

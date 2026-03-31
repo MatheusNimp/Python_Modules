@@ -9,7 +9,7 @@ ENTRIES: list[str] = [
 def main() -> None:
     print("=== CYBER ARCHIVES - PRESERVATION SYSTEM ===\n")
     print(f"Initializing new storage unit: {FILENAME}")
-    file = open(FILENAME, "w", encoding="utf-8")
+    file = open(FILENAME, "w")
     print("Storage unit created successfully...\n")
     print("Inscribing preservation data...")
     file.write("\n".join(ENTRIES) + "\n")
