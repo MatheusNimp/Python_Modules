@@ -9,19 +9,16 @@ def main() -> None:
 
     print("SECURE EXTRACTION:")
     try:
-        with open(READ_FILE, "r", encoding="utf-8") as file:
-            content = file.read().strip()
-        if content:
-            for line in content.splitlines():
-                print(line)
-        else:
-            print("[CLASSIFIED] No data recovered\n")
+        with open(READ_FILE, "r") as file:
+            content = file.read()
+        print(content, end="")
+        if content and content[-1] != "\n":
+            print()
     except FileNotFoundError:
-        print("[CLASSIFIED] Quantum encryption keys recovered")
-        print("[CLASSIFIED] Archive integrity: 100%")
+        print("RESPONSE: Archive not found in storage matrix")
 
     print("\nSECURE PRESERVATION:")
-    with open(WRITE_FILE, "w", encoding="utf-8") as file:
+    with open(WRITE_FILE, "w") as file:
         file.write("[CLASSIFIED] New security protocols archived\n")
     print("[CLASSIFIED] New security protocols archived")
     print("Vault automatically sealed upon completion\n")
