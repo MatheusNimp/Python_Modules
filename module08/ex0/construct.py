@@ -40,14 +40,14 @@ def print_global_environment_message() -> None:
 
 def print_virtual_environment_message() -> None:
     """Display information about the active virtual environment."""
-    print("MATRIX STATUS: Welcome to the construct")
-    print(f"Current Python: {sys.executable}")
+    print("\nMATRIX STATUS: Welcome to the construct")
+    print(f"\nCurrent Python: {sys.executable}")
     print(f"Virtual Environment: {get_environment_name()}")
     print(f"Environment Path: {sys.prefix}")
-    print("SUCCESS: You're in an isolated environment!")
+    print("\nSUCCESS: You're in an isolated environment!")
     print("Safe to install packages without affecting")
     print("the global system.")
-    print("Package installation path:")
+    print("\nPackage installation path:")
     for package_path in get_package_paths():
         print(package_path)
 
