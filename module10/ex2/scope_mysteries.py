@@ -1,8 +1,3 @@
-"""Memory Depths exercises.
-
-This module demonstrates closures, lexical scoping, and nonlocal state.
-"""
-
 from collections.abc import Callable
 
 

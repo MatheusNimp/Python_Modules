@@ -4,7 +4,7 @@ from pydantic import BaseModel, Field, ValidationError, model_validator
 
 
 class Rank(str, Enum):
-    """Allowed ranks for crew members."""
+    """Allowed ranks for space crew members."""
 
     CADET = "cadet"
     OFFICER = "officer"
@@ -14,7 +14,7 @@ class Rank(str, Enum):
 
 
 class CrewMember(BaseModel):
-    """Validated model for one crew member."""
+    """Validated information for one crew member."""
 
     member_id: str = Field(min_length=3, max_length=10)
     name: str = Field(min_length=2, max_length=50)
@@ -26,7 +26,7 @@ class CrewMember(BaseModel):
 
 
 class SpaceMission(BaseModel):
-    """Validated model for a space mission and its crew."""
+    """Validated mission with a nested crew list."""
 
     mission_id: str = Field(min_length=5, max_length=15)
     mission_name: str = Field(min_length=3, max_length=100)
@@ -39,36 +39,40 @@ class SpaceMission(BaseModel):
 
     @model_validator(mode="after")
     def validate_mission_rules(self) -> "SpaceMission":
-        """Validate safety rules that depend on the mission crew."""
+        """Apply mission safety rules from the subject."""
+
         if not self.mission_id.startswith("M"):
-            raise ValueError('Mission ID must start with "M"')
-        if not self._has_commanding_officer():
+            raise ValueError("Mission ID must start with M")
+        if not self.has_command_leader():
             raise ValueError(
                 "Mission must have at least one Commander or Captain"
             )
-        if self.duration_days > 365 and not self._has_enough_experience():
+        if self.duration_days > 365 and not self.has_experienced_crew():
             raise ValueError(
-                "Long missions need 50% experienced crew (5+ years)"
+                "Long missions need 50% experienced crew"
             )
         if not all(member.is_active for member in self.crew):
             raise ValueError("All crew members must be active")
         return self
 
-    def _has_commanding_officer(self) -> bool:
+    def has_command_leader(self) -> bool:
         """Return True when the crew has a commander or captain."""
+
         command_ranks = {Rank.COMMANDER, Rank.CAPTAIN}
         return any(member.rank in command_ranks for member in self.crew)
 
-    def _has_enough_experience(self) -> bool:
+    def has_experienced_crew(self) -> bool:
         """Return True when at least half the crew has 5+ years."""
+
         experienced_count = sum(
             1 for member in self.crew if member.years_experience >= 5
         )
         return experienced_count * 2 >= len(self.crew)
 
 
-def display_mission(mission: SpaceMission) -> None:
-    """Display the important details of a validated mission."""
+def show_mission(mission: SpaceMission) -> None:
+    """Print mission and nested crew details."""
+
     print(f"Mission: {mission.mission_name}")
     print(f"ID: {mission.mission_id}")
     print(f"Destination: {mission.destination}")
@@ -83,83 +87,85 @@ def display_mission(mission: SpaceMission) -> None:
         )
 
 
-def print_first_validation_error(error: ValidationError) -> None:
-    """Print the first Pydantic validation message clearly."""
+def show_validation_error(error: ValidationError) -> None:
+    """Print the first Pydantic error message."""
+
     first_error = error.errors()[0]
-    print(first_error["msg"].removeprefix("Value error, "))
-
-
-def build_valid_mission() -> SpaceMission:
-    """Create a valid demonstration mission."""
-    return SpaceMission(
-        mission_id="M2024_MARS",
-        mission_name="Mars Colony Establishment",
-        destination="Mars",
-        launch_date="2024-09-15T08:00:00",
-        duration_days=900,
-        budget_millions=2500.0,
-        crew=[
-            CrewMember(
-                member_id="C001",
-                name="Sarah Connor",
-                rank="commander",
-                age=45,
-                specialization="Mission Command",
-                years_experience=15,
-            ),
-            CrewMember(
-                member_id="C002",
-                name="John Smith",
-                rank="lieutenant",
-                age=34,
-                specialization="Navigation",
-                years_experience=8,
-            ),
-            CrewMember(
-                member_id="C003",
-                name="Alice Johnson",
-                rank="officer",
-                age=29,
-                specialization="Engineering",
-                years_experience=6,
-            ),
-        ],
-    )
+    context = first_error.get("ctx")
+    if isinstance(context, dict) and "error" in context:
+        print(context["error"])
+    else:
+        print(first_error["msg"])
 
 
 def main() -> None:
-    """Demonstrate successful and failed mission validation."""
+    """Create valid and invalid missions to demonstrate validation."""
+
     print("Space Mission Crew Validation")
     print("=" * 41)
 
-    mission = build_valid_mission()
+    crew = [
+        CrewMember(
+            member_id="CMDR001",
+            name="Sarah Connor",
+            rank=Rank.COMMANDER,
+            age=42,
+            specialization="Mission Command",
+            years_experience=18,
+        ),
+        CrewMember(
+            member_id="NAV002",
+            name="John Smith",
+            rank=Rank.LIEUTENANT,
+            age=35,
+            specialization="Navigation",
+            years_experience=9,
+        ),
+        CrewMember(
+            member_id="ENG003",
+            name="Alice Johnson",
+            rank=Rank.OFFICER,
+            age=31,
+            specialization="Engineering",
+            years_experience=7,
+        ),
+    ]
+    mission = SpaceMission(
+        mission_id="M2024_MARS",
+        mission_name="Mars Colony Establishment",
+        destination="Mars",
+        launch_date="2024-11-20T14:00:00",
+        duration_days=900,
+        crew=crew,
+        budget_millions=2500.0,
+    )
 
     print("Valid mission created:")
-    display_mission(mission)
+    show_mission(mission)
     print("=" * 41)
-    print("Expected validation error:")
 
+    print("Expected validation error:")
     try:
         SpaceMission(
-            mission_id="M2024_TEST",
-            mission_name="Uncommanded Test Mission",
-            destination="Europa",
-            launch_date="2024-11-01T09:00:00",
+            mission_id="M2024_MOON",
+            mission_name="Moon Supply Run",
+            destination="Moon",
+            launch_date="2024-09-05T08:00:00",
             duration_days=30,
-            budget_millions=300.0,
             crew=[
                 CrewMember(
-                    member_id="C004",
-                    name="Bob Stone",
-                    rank="officer",
-                    age=31,
+                    member_id="SCI004",
+                    name="Dana Lee",
+                    rank=Rank.OFFICER,
+                    age=29,
                     specialization="Science",
                     years_experience=4,
                 )
             ],
+            budget_millions=300.0,
         )
     except ValidationError as error:
-        print_first_validation_error(error)
+        show_validation_error(error)
 
 
 if __name__ == "__main__":

@@ -1,9 +1,3 @@
-"""Higher Realm exercises.
-
-This module demonstrates higher-order functions: functions receiving,
-returning, and composing other functions.
-"""
-
 from collections.abc import Callable
 
 Spell = Callable[[str, int], str]

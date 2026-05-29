@@ -1,9 +1,3 @@
-"""Master's Tower exercises.
-
-This module demonstrates decorators, decorator factories, retry wrappers,
-and static methods.
-"""
-
 import time
 from collections.abc import Callable
 from functools import wraps
@@ -75,7 +69,8 @@ class MageGuild:
 
     @staticmethod
     def validate_mage_name(name: str) -> bool:
-        """Return True when name has at least 3 chars and only letters/spaces."""
+        """Return True when name has at
+        least 3 chars and only letters/spaces."""
         return len(name) >= 3 and all(
             character.isalpha() or character.isspace()
             for character in name

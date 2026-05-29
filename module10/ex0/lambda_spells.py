@@ -1,13 +1,7 @@
-"""Lambda Sanctum exercises.
-
-This module demonstrates lambda expressions with the functional helpers
-requested by the subject.
-"""
-
-
 def artifact_sorter(artifacts: list[dict]) -> list[dict]:
     """Return artifacts sorted by power from strongest to weakest."""
-    return sorted(artifacts, key=lambda artifact: artifact["power"], reverse=True)
+    return sorted(
+        artifacts, key=lambda artifact: artifact["power"], reverse=True)
 
 
 def power_filter(mages: list[dict], min_power: int) -> list[dict]:

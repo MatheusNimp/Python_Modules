@@ -3,7 +3,6 @@ name = "matrix-loading-programs"
 version = "0.1.0"
 description = "Exercise 1 for Matrix data engineering package management"
 authors = ["42 Student <student@example.com>"]
-readme = "README.md"
 packages = []
 
 [tool.poetry.dependencies]

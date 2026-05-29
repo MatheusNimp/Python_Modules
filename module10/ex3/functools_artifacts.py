@@ -1,9 +1,3 @@
-"""Ancient Library exercises.
-
-This module demonstrates functools.reduce, functools.partial,
-functools.lru_cache, and functools.singledispatch.
-"""
-
 import functools
 import operator
 from collections.abc import Callable
@@ -28,7 +22,9 @@ def spell_reducer(spells: list[int], operation: str) -> int:
     return functools.reduce(operations[operation], spells)
 
 
-def partial_enchanter(base_enchantment: Callable[[int, str, str], str]) -> dict[str, Callable[[str], str]]:
+def partial_enchanter(
+        base_enchantment: Callable[[int, str, str], str]) -> dict[
+            str, Callable[[str], str]]:
     """Create specialized elemental enchantments with functools.partial."""
     return {
         "fire": functools.partial(base_enchantment, 50, "fire"),

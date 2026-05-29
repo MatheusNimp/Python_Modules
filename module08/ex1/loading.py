@@ -116,7 +116,6 @@ def main() -> None:
         print_installation_help()
         sys.exit(1)
 
-    matplotlib_module = loaded_modules["matplotlib"]
     pyplot_module = import_dependency("matplotlib.pyplot")
     if pyplot_module is None:
         print("[MISSING] matplotlib.pyplot - visualization unavailable")
